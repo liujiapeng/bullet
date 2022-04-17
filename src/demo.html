@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="./index.css" />
+  <script src="./index.js"></script>
+</head>
+<style>
+  #video {
+    height: 300px;
+    width: 600px;
+
+    overflow: hidden;
+
+    background: red;
+    position: relative;
+  }
+
+  .red {
+    background: #fff;
+    color: red;
+  }
+</style>
+
+<body>
+  <div id="video"></div>
+
+  <button onclick="bullet.start()">开始</button>
+  <button onclick="bullet.pause()">暂停</button>
+  <button onclick="bullet.show()">展示</button>
+  <button onclick="bullet.hide()">隐藏</button>
+</body>
+
+<script>
+  const bullet = new Bullet({
+    el: "#video",
+    delay: 0,
+    touchStop: true,
+  });
+
+  const msgList = new Array(8).fill(0).map((item, index) => {
+    return {
+      text: `草泥马草泥马`,
+      timeout: index * 10
+    };
+  });
+
+  msgList.forEach(item => {
+    setTimeout(() => {
+      bullet.pushBullet([item])
+    }, item.timeout)
+  })
+
+  // bullet.pushBullet(msgList);
+
+  setTimeout(() => {
+    bullet.pushBullet([{ text: '草泥马草泥马' }])
+  }, 1000)
+</script>
+
+</html>
